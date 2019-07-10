@@ -1,0 +1,29 @@
+.centered-modal {
+  position: fixed;
+  top: 66%;
+  left: 50%;
+  margin-top: -100px;
+  margin-left: -250px;
+  padding: 35px;
+  width: 500px;
+  background-color: white;
+
+  .modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+  .content-item{
+      margin-bottom: 10px;
+  }
+  .nav-buttons{
+    display: flex;
+    justify-content: flex-end;
+  }
+  .bold {
+    font-weight: $font-weight-bold;
+  }
+  .indent {
+    padding-left: 20px;
+  }
+}
