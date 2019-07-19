@@ -17,7 +17,7 @@ class Modal extends Component{
     this.props.setButtonClicked(this.props.appointment.buttonClicked, this.props.id);
   };
   submitTime = () => {
-    this.props.submitTime(this.props.appointment.submittedTime, this.props.id);
+    this.props.submitTime(this.props.appointment.submittedTime, this.props.appointment.time, this.props.id);
     this.props.setButtonClicked(this.props.appointment.buttonClicked, this.props.id);
   };
 
@@ -45,7 +45,7 @@ class Modal extends Component{
               onChange={this.handleChange2}
               value={appointment.time}
             />
-          <button onClick={() => this.submitTime(appointment.buttonClicked)}> Submit</button>
+          <button onClick={() => this.submitTime()}> Submit</button>
           <button onClick={() => this.cancelSelection()}> Cancel</button>
 
 
