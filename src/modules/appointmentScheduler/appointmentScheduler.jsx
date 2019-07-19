@@ -1,32 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classNames from 'classnames';
-import './_appointmentScheduler.scss'
-import Modal from "../modal/modalContainer";
+import './_appointmentScheduler.scss';
+import Modal from "../modal/modal";
 
 
-const AppointmentScheduler = ({setButtonClicked, buttonClicked, timeSlot, submittedTime, id,appointment}) => {
+const AppointmentScheduler = ({setButtonClicked, id, appointment, submitTime, cancelSelection, setName, setTime}) => {
   const classes = classNames({
-    'red-button': submittedTime === true,
-    'regular-button': submittedTime === false
+    'red-button': appointment.submittedTime === true,
+    'regular-button': appointment.submittedTime === false
   });
-
-  // let clazz = submittedTime ? `red-button-${id}` : `regular-button-${id}`
 
   return (
       <div className="appointment-scheduler">
-        <button className={classes} onClick={() => setButtonClicked(buttonClicked, id)}>
-          {timeSlot}
+        <button className={classes} onClick={() => setButtonClicked(appointment.buttonClicked, id)}>
+          {appointment.timeSlot}
         </button>
-        {appointment.buttonClicked && <Modal id={id} buttonClicked={appointment.buttonClicked} appointment={appointment}/>}
+        {appointment.buttonClicked && <Modal id={id} buttonClicked={appointment.buttonClicked} appointment={appointment}
+                                             submitTime={submitTime} cancelSelection={cancelSelection} setButtonClicked={setButtonClicked}
+                                             setName={setName} setTime={setTime}/>}
 
       </div>);
   };
 
 AppointmentScheduler.propTypes = {
   setButtonClicked: PropTypes.func,
-  buttonClicked: PropTypes.bool,
-  timeSlot: PropTypes.string
+  id: PropTypes.number,
+  appointment: PropTypes.object,
+  submitTime: PropTypes.func,
+  cancelSelection: PropTypes.func,
+  setName: PropTypes.func,
+  setTime: PropTypes.func
 };
 
 export default AppointmentScheduler;

@@ -1,28 +1,28 @@
 
 import React, {Component} from 'react';
-import './_modal.scss'
+import './_modal.scss';
 import PropTypes from 'prop-types';
 
 
 class Modal extends Component{
 
   handleChange = (event) => {
-    this.props.setName(event.target.value,this.props.id);
+    this.props.setName(event.target.value, this.props.id);
   };
   handleChange2 = event => {
     this.props.setTime(event.target.value, this.props.id);
   };
   cancelSelection = () => {
-    this.props.cancelSelection();
-    this.props.setButtonClicked(this.props.buttonClicked, this.props.id);
+    this.props.cancelSelection(this.props.id);
+    this.props.setButtonClicked(this.props.appointment.buttonClicked, this.props.id);
   };
   submitTime = () => {
-    this.props.submitTime(this.props.submittedTime);
-    this.props.setButtonClicked(this.props.buttonClicked,this.props.id);
+    this.props.submitTime(this.props.appointment.submittedTime, this.props.id);
+    this.props.setButtonClicked(this.props.appointment.buttonClicked, this.props.id);
   };
 
   render(){
-    const { buttonClicked, appointment} = this.props;
+    const {appointment} = this.props;
     return (
       <div className="centered-modal">
 
@@ -45,7 +45,7 @@ class Modal extends Component{
               onChange={this.handleChange2}
               value={appointment.time}
             />
-          <button onClick={() => this.submitTime(buttonClicked)}> Submit</button>
+          <button onClick={() => this.submitTime(appointment.buttonClicked)}> Submit</button>
           <button onClick={() => this.cancelSelection()}> Cancel</button>
 
 
@@ -60,9 +60,11 @@ class Modal extends Component{
 Modal.propTypes = {
   setName: PropTypes.func,
   setTime: PropTypes.func,
+  submitTime: PropTypes.func,
   setButtonClicked: PropTypes.func,
-  name: PropTypes.string,
-  time: PropTypes.string
+  cancelSelection: PropTypes.func,
+  appointment: PropTypes.object,
+  id: PropTypes.number
 };
 
 export default Modal;

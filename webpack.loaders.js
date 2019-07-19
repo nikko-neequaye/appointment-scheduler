@@ -1,21 +1,5 @@
 const path = require('path');
 
-
-// Options passed to node-sass
-const sassIncludePaths = [
-  path.resolve(__dirname, 'styles')
-];
-
-
-// These files will be imported in every sass file
-const sassResourcesPaths = [
-  path.resolve(__dirname, 'styles/global/_main.scss'),
-  path.resolve(__dirname, 'styles/global/_defaults.scss'),
-  path.resolve(__dirname, 'styles/global/_layout.scss'),
-  path.resolve(__dirname, 'styles/global/_mixins.scss'),
-  path.resolve(__dirname, 'styles/global/_typography.scss'),
-];
-
 // noinspection WebpackConfigHighlighting
 module.exports = [
   // =========
@@ -165,21 +149,6 @@ module.exports = [
           sourceMap: "inline",
         }
       },
-      {
-        loader: "sass-loader",
-        options: {
-          sourceMap: true,
-          outputStyle: "expanded",
-          indentedSyntax: false,
-          includePaths: sassIncludePaths
-        }
-      },
-      {
-        loader: "sass-resources-loader",
-        options: {
-          resources: sassResourcesPaths
-        }
-      }
     ]
   },
   // Local SASS css-modules
@@ -206,21 +175,6 @@ module.exports = [
           sourceMap: "inline",
         }
       },
-      {
-        loader: "sass-loader",
-        options: {
-          sourceMap: true,
-          outputStyle: "expanded",
-          indentedSyntax: false,
-          includePaths: sassIncludePaths
-        }
-      },
-      {
-        loader: "sass-resources-loader",
-        options: {
-          resources: sassResourcesPaths
-        },
-      }
     ]
   }
 

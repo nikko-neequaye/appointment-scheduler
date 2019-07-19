@@ -1,11 +1,11 @@
 import {
-  BUTTON_CLICKED,
-  SET_APPOINTMENT, SET_NAME, SET_TIME,
+  BUTTON_CLICKED, CANCEL_SELECTION,
+  SET_APPOINTMENT, SET_NAME, SET_TIME, SUBMIT_TIME
 } from "./actionTypes";
 import _ from "lodash";
 
 const initialState = {
-  appointments:[]
+  appointments: []
 };
 
 export default function schedulerReducer(state = initialState, action) {
@@ -26,6 +26,17 @@ export default function schedulerReducer(state = initialState, action) {
     case SET_TIME:
       newState = _.cloneDeep(state);
       newState.appointments[action.id].time = action.payload;
+      return newState;
+    case SUBMIT_TIME:
+      newState = _.cloneDeep(state);
+      newState.appointments[action.id].submittedTime = action.payload;
+      return newState;
+    case CANCEL_SELECTION:
+      newState = _.cloneDeep(state);
+      newState.appointments[action.id].submittedTime = false;
+      newState.appointments[action.id].buttonClicked = false;
+      newState.appointments[action.id].name = "";
+      newState.appointments[action.id].time = "";
       return newState;
     default:
       return state;
